@@ -306,7 +306,7 @@
 
 		<!--[if !IE]>-->
 
-		<script src="assets/js/jquery-2.0.3.min.js"></script>
+		<script src="${ctx}/assets/js/jquery-2.0.3.min.js"></script>
         
 		<!--<![endif]-->
 

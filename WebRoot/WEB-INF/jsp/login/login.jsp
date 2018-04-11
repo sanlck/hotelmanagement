@@ -8,7 +8,7 @@
 <html>
   <head>
     
-    <title>欢迎登录酒店管理系统</title>
+    <title>酒店管理系统</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
