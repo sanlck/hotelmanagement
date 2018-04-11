@@ -121,35 +121,14 @@
 		          <td><input type="checkbox" name="id" value="${item.id}"></td>
 		          <td>${item.roomNumber}</td>
 		          <td>${item.guestRoomLevelName}</td>
-		          
-		          <c:if test="${item.roomStateID==1}">
-		            <td style="background:#99FF99;">${item.roomName}</td>
-		          </c:if>
-		          <c:if test="${item.roomStateID==2}">
-		            <td style="background:#DDDDDD;">${item.roomName}</td>
-		          </c:if>
-		          <c:if test="${item.roomStateID==4}">
-		            <td style="background:#99FFFF;">${item.roomName}</td>
-		          </c:if>
-		          <c:if test="${item.roomStateID==5}">
-		            <td style="background:#BBBB00;">${item.roomName}</td>
-		          </c:if>
-		          <c:if test="${item.roomStateID==6}">
-		            <td style="background:#FF7744;">${item.roomName}</td>
-		          </c:if>
-		          <c:if test="${item.roomStateID==7}">
-		            <td style="background:#FF0088;">${item.roomName}</td>
-		          </c:if>
-		          <c:if test="${item.roomStateID==65}">
-		            <td style="background:#FF00FF;">${item.roomName}</td>
-		          </c:if>
-		          
+		          <td>${item.roomName}</td>
 		          <td>${item.roomAmount}</td>
 		          <td>￥${item.standardPriceDay}</td>
 		          <td>￥${item.standardPrice}</td>
 		          <td>${item.maxDuration}</td>
 		          <td>${item.firstDuration}</td>
 		          <td>￥${item.firstPrice}</td>
+		          
 		        </tr>
 	        </c:forEach>
 	      </tbody>

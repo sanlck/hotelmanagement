@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>欢迎使用酒店管理系统</title>
+		<title>酒店管理系统</title>
 
 		<meta name="description" content="概述及统计" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,7 +39,7 @@
 		<!--inline styles related to this page-->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	
-
+	
 	</head>
 
 	<body>
@@ -48,8 +48,8 @@
 				<div class="container-fluid">
 					<a href="#" class="brand">
 						<small>
-							<i class="icon-leaf"></i>
-							欢迎使用酒店管理系统
+							<div class="icon-flag"></div>
+							酒店管理系统
 						</small>
 					</a><!--/.brand-->
 
@@ -146,7 +146,7 @@
 					
 					<li>
 						<a id="stayManageId" onclick="stayManage()" class="dropdown-toggle">
-							<i class="icon-move"></i>
+							<i class="icon-tint"></i>
 							<span class="menu-text">住宿管理 </span>
 
 							<b class="arrow icon-angle-down"></b>
@@ -256,47 +256,6 @@
 				  <iframe id="Mainid" src="${ctx}/Main/todata.do" style="width:100%;height:100%;"  frameBorder="0" scrolling="no"></iframe>
 				</div>
 
-				<div class="ace-settings-container" id="ace-settings-container">
-					<div class="btn btn-app btn-mini btn-warning ace-settings-btn" id="ace-settings-btn">
-						<i class="icon-cog bigger-150"></i>
-					</div>
-
-					<div class="ace-settings-box" id="ace-settings-box">
-						<div>
-							<div class="pull-left">
-								<select id="skin-colorpicker" class="hide">
-									<option data-class="default" value="#438EB9" />#438EB9
-									<option data-class="skin-1" value="#222A2D" />#222A2D
-									<option data-class="skin-2" value="#C6487E" />#C6487E
-									<option data-class="skin-3" value="#D0D0D0" />#D0D0D0
-								</select>
-							</div>
-							<span>&nbsp; 选择皮肤</span>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-header" />
-							<label class="lbl" for="ace-settings-header">固定头部</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-sidebar" />
-							<label class="lbl" for="ace-settings-sidebar">固定侧栏</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-breadcrumbs" />
-							<label class="lbl" for="ace-settings-breadcrumbs">固定面包屑</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-rtl" />
-							<label class="lbl" for="ace-settings-rtl">左右互换</label>
-						</div>
-					</div>
-				</div><!--/#ace-settings-container-->
-			</div><!--/.main-content-->
-		</div><!--/.main-container-->
 
 		<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse">
 			<i class="icon-double-angle-up icon-only bigger-110"></i>
@@ -361,27 +320,7 @@
 
 		<script type="text/javascript">
 			$(function() {
-				$('.easy-pie-chart.percentage').each(function(){
-					var $box = $(this).closest('.infobox');
-					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
-					var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
-					var size = parseInt($(this).data('size')) || 50;
-					$(this).easyPieChart({
-						barColor: barColor,
-						trackColor: trackColor,
-						scaleColor: false,
-						lineCap: 'butt',
-						lineWidth: parseInt(size/10),
-						animate: /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ? false : 1000,
-						size: size
-					});
-				})
-			
-				
-			
-			
-			
-			 
+			  var placeholder,data,position;
 			  function drawPieChart(placeholder, data, position) {
 			 	  $.plot(placeholder, data, {
 					series: {
