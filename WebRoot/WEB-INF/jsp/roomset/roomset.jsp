@@ -51,7 +51,7 @@
     }
     
     .theadone{
-     background-color: #CCFF99;
+     background-color: #CAE1FF;
     }
     
     .dgvone{
@@ -62,7 +62,12 @@
       width:70%;
     }
     
-  
+  	/*
+  	.edit_del{
+  		border: 0px solid transparent !important;
+  	}
+  	*/
+  	
   </style>
   
  </head>
@@ -72,9 +77,8 @@
   <div class="container" style="height:630px;overflow-x:auto;">
     <div class="span5">
 	    <div class="row-fluid">
-		    <label class="labelroomnumber">房间号：</label>
 		    <form action="${ctx}/RoomSet/tolist.do" method="post" style="float: left;">
-			   <input id="txtnameid" name="txtname" class="textone roomnumberwidth" style="border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:26px;" type="text" placeholder="请输入关键字" value="${txtname}">
+			   <input id="txtnameid" name="txtname" class="textone roomnumberwidth" style="border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:26px;" type="text" placeholder="请输入房间号" value="${txtname}">
 			   <div class="input-append">  
 			      <button type="submit" class="btn-success textone" style="margin-left:-4px;height:26px;"><li class="icon-search icon-white"></li>搜索</button>
 			   </div>
@@ -87,16 +91,13 @@
          <button class="btn btn-info btn-small textone" type="button" onclick="addfunction()"><li class="icon-plus icon-white"></li>新增</button>
        </div>
        <div class="span3">
-         <button class="btn btn-warning btn-small textone" type="button" onclick="updatefunction()"><li class="icon-pencil icon-white"></li>修改</button>
-       </div>
-       <div class="span3">
-         <button class="btn btn-danger btn-small textone" type="button" onclick="deletefunction()"><li class="icon-remove icon-white"></li>删除</button>
+         <button class="btn btn-danger btn-small textone" type="button" onclick="deletesfunction()"><li class="icon-remove icon-white"></li>批量删除</button>
        </div>
       </div>
     </div>
     <br>
     <div class="dgvone">
-       <table class="table table-condensed table-bordered table-striped" id="tableid">
+       <table class="table table-condensed table-bordered table-striped table-hover" id="tableid">
 	      <thead class="theadone">
 	        <tr>
 	          <th rowspan="2">选择</th>
@@ -106,7 +107,7 @@
 	          <th rowspan="2">床位数</th>
 	          <th rowspan="2">标准客房/天</th>
 	          <th colspan="4">钟点房价设置</th>
-	          
+	          <th rowspan="2">操作</th>
 	        </tr>
 	        <tr>
 	          <th >标准房价/小时</th>
@@ -115,8 +116,8 @@
 	          <th >首段价格</th>
 	        </tr>
 	      </thead>
-	      <tbody id="tbody">
-	        <c:forEach items="${list.result}" var="item">
+	      <tbody id="tbody" >
+	        <c:forEach items="${list.result}" var="item">		       
 		        <tr>
 		          <td><input type="checkbox" name="id" value="${item.id}"></td>
 		          <td>${item.roomNumber}</td>
@@ -127,9 +128,12 @@
 		          <td>￥${item.standardPrice}</td>
 		          <td>${item.maxDuration}</td>
 		          <td>${item.firstDuration}</td>
-		          <td>￥${item.firstPrice}</td>
-		          
-		        </tr>
+		          <td>￥${item.firstPrice}</td>	
+	        	  <td class="edit_del">
+		          	<button class="btn btn-warning btn-small" type="button" onclick="updatefunction(${item.id})">修改</button>
+		          	<button class="btn btn-danger btn-small" type="button" onclick="deletefunction(${item.id})">删除</button>
+		          </td>          
+		        </tr>	    
 	        </c:forEach>
 	      </tbody>
 	    </table>
@@ -149,40 +153,38 @@
    function addfunction(){
      parent.document.getElementById('Mainid').src='${ctx}/RoomSet/toadd.do';
    }
-   
-   function updatefunction(){
-   var chk_value=[];
-  	$('input[name="id"]:checked').each(function(){
-  		chk_value.push($(this).val());
-  	});
-  	if(chk_value!=""){
-		if(chk_value.toString().indexOf(",")>0){
-		   alert("修改只能选择一条");
-		}else{
-		   parent.document.getElementById("Mainid").src='${ctx}/RoomSet/toupdate.do?id='+chk_value;
+   //修改按钮 
+   function updatefunction(item_id){
+	    var chk_value=item_id;	  		  	
+	  	if(chk_value!=""){			
+			   parent.document.getElementById("Mainid").src='${ctx}/RoomSet/toupdate.do?id='+chk_value;
 		}
-	}else{
-	  alert("请选择一条数据进行修改");
-	}
   }
-  
-   function deletefunction(){
+   //批量删除按钮
+   function deletesfunction(){
    var chk_value=[];
-  	$('input[name="id"]:checked').each(function(){
-  		chk_value.push($(this).val());
-  	});
-  	if(chk_value!=""){
-  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
-     if(flag){
-  	  parent.document.getElementById("Mainid").src='${ctx}/RoomSet/delete.do?id='+chk_value;
-  	}
-  	}else{
-	  alert("请选择一条或多条数据进行删除");
-	}
-	
+	  	$('input[name="id"]:checked').each(function(){
+	  		chk_value.push($(this).val());
+	  	});
+	  	if(chk_value!=""&& chk_value.length>1){
+		  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
+			     if(flag){
+			  	  parent.document.getElementById("Mainid").src='${ctx}/RoomSet/delete.do?id='+chk_value;
+		  	}
+	  	}else{
+	  		alert("请选择多条数据进行删除");
+	  	}
   }
-  
-  
+  //删除按钮 
+   function deletefunction(item_id){
+	   var chk_value=item_id;
+	  	if(chk_value!=""){
+		  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
+		     if(flag){
+		  	  parent.document.getElementById("Mainid").src='${ctx}/RoomSet/delete.do?id='+chk_value;
+		  	}
+	  	}
+	  }
   
   /* function selectFunction(){
     var tbody = document.getElementById("tbody");

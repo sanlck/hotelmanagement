@@ -51,16 +51,13 @@
     }
     
     .theadone{
-     background-color: #CCFF99;
+     background-color: #CAE1FF;
     }
     
     .table th,.table td{
        text-align: center; 
     }
-    
-    .theadone{
-     background-color: #CCFF99;
-    }
+
     
     .dgvone{
       margin-top: 12px;
