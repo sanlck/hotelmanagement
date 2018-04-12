@@ -336,11 +336,11 @@
 		      <label class="labelroomnumber">旅客姓名：</label>
 			   <input id="txtnameid" name="txtname" class="textone" style="width:55%; border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:27px;" type="text" placeholder="请输入关键字" value="${txtname}">
 			   <div class="input-append">  
-			      <button onclick="souSuo()" class="btn-success textone" style="margin-left:-4px;height:27px;"><li class="icon-search icon-white"></li>搜索</button>
+			      <button onclick="souSuo()" class="btn-success btn-small textone" style="margin-left:-4px;height:27px;"><li class="icon-search icon-white"></li>搜索</button>
 			   </div>
 	       </div>
 	       <div class="span4">
-	          <button data-dismiss="modal" class="btn btn-info btn-small textone" type="button" onclick="confirmfunction()"><li class="icon-plus icon-white"></li>确定选择</button>
+	          <button data-dismiss="modal" class="btn btn-info  textone" type="button" onclick="confirmfunction()"><li class="icon-plus icon-white"></li>确定选择</button>
 	       </div>
 	    </div>
 	     <div class="dgvone" style="width:93%;">

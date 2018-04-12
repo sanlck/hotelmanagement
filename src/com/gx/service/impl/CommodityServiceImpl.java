@@ -39,8 +39,7 @@ public class CommodityServiceImpl implements CommodityService {
 	}
 
 	@Override
-	public Page<CommodityPo> pageFuzzyselect(String commodityName,
-		int commodityTypeID, Page<CommodityPo> vo) {
+	public Page<CommodityPo> pageFuzzyselect(String commodityName,int commodityTypeID, Page<CommodityPo> vo) {
 		int start=0;
 		if (vo.getCurrentPage()>1) {
 			start=(vo.getCurrentPage()-1)*vo.getPageSize();
@@ -51,7 +50,20 @@ public class CommodityServiceImpl implements CommodityService {
 		vo.setTotal(count);
 		return vo;
 	}
-
+	
+	@Override
+	public Page<CommodityPo> pageFuzzysselect(String commodityName, Page<CommodityPo> vo) {
+		int start=0;
+		if (vo.getCurrentPage()>1) {
+			start=(vo.getCurrentPage()-1)*vo.getPageSize();
+		}
+		List<CommodityPo> list=commodityDao.pageFuzzysselect(commodityName, start, vo.getPageSize());
+		vo.setResult(list);
+		int count=commodityDao.countFuzzysselect(commodityName);
+		vo.setTotal(count);
+		return vo;
+	}
+	
 	@Override
 	public List<CommodityPo> fuzzySelect(String commodityName,int commodityTypeID) {
 		return commodityDao.fuzzySelect(commodityName, commodityTypeID);
@@ -61,5 +73,7 @@ public class CommodityServiceImpl implements CommodityService {
 	public int selectYZ(String commodityName) {
 		return this.commodityDao.selectYZ(commodityName);
 	}
+
+
 
 }

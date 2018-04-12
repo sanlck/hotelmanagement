@@ -271,7 +271,7 @@
 		      <label class="labelroomnumber">团队名称：</label>
 			   <input id="txtnameidTwo" name="txtname" class="textone" style="width:60%; border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:26px;" type="text" placeholder="请输入关键字">
 			   <div class="input-append">  
-			      <button class="btn-success textone" style="margin-left:-4px;height:26px;" onclick="selectTarget()"><li class="icon-search icon-white"></li>搜索</button>
+			      <button class="btn-success textone" style="margin-left:-4px;height:26px;" onclick="selectTarget()">搜索</button>
 			   </div>
 	       </div>
 	       <div class="span4">
@@ -317,7 +317,7 @@
 		      <label class="labelroomnumber">旅客姓名：</label>
 			   <input name="txtname" class="textone" style="width:60%; border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:26px;" type="text" placeholder="请输入关键字" value="${txtname}">
 			   <div class="input-append">  
-			      <button type="submit" class="btn-success textone" style="margin-left:-4px;height:26px;"><li class="icon-search icon-white"></li>搜索</button>
+			      <button type="submit" class="btn-success textone" style="margin-left:-4px;height:26px;">搜索</button>
 			   </div>
 	       </div>
 	       <div class="span4">

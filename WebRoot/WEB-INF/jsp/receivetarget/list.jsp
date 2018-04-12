@@ -76,7 +76,7 @@
 		    <form action="${ctx}/ReceiveTarget/tolist.do" method="post" style="float: left;">
 			   <input id="txtnameid" name="txtname" class="textone roomnumberwidth" style="border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:26px;" type="text" placeholder="请输入关键字" value="${txtname}">
 			   <div class="input-append">  
-			      <button type="submit" class="btn-success textone" style="margin-left:-4px;height:26px;"><li class="icon-search icon-white"></li>搜索</button>
+			      <button type="submit" class="btn-success textone" style="margin-left:-4px;height:26px;">搜索</button>
 			   </div>
 		    </form>
 	    </div>

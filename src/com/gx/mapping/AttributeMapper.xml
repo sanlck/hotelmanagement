@@ -25,7 +25,7 @@
   
    <!--   查看商品类别 -->
   <select id="selectCommodityType" resultType="com.gx.po.AttributePo" >
-    SELECT a.*,b.id AS far_id,b.attributeDetailsName FROM attribute a INNER JOIN attributedetails b ON a.id =b.attributeID WHERE a.id=3
+    SELECT a.*,b.id AS far_id,b.attributeDetailsName FROM attribute a INNER JOIN attributedetails b ON a.id =b.attributeID WHERE a.id=3 ORDER BY far_id desc
   </select>
   
    <!--   查看计量单位 -->

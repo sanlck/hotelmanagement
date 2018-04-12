@@ -80,7 +80,7 @@
 		    <form action="${ctx}/RoomSet/tolist.do" method="post" style="float: left;">
 			   <input id="txtnameid" name="txtname" class="textone roomnumberwidth" style="border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:26px;" type="text" placeholder="请输入房间号" value="${txtname}">
 			   <div class="input-append">  
-			      <button type="submit" class="btn-success textone" style="margin-left:-4px;height:26px;"><li class="icon-search icon-white"></li>搜索</button>
+			      <button type="submit" class="btn btn-success  btn-small textone" style="margin-left:-5px;height:26px;width: 45px;">搜索</button>
 			   </div>
 		    </form>
 	    </div>

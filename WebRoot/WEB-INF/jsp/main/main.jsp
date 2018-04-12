@@ -120,7 +120,6 @@
 						<a id="roomManageId" onclick="roomManage()" class="dropdown-toggle">
 							<i class="icon-home"></i>
 							<span class="menu-text">房间管理 </span>
-
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
@@ -166,13 +165,7 @@
 									<span>住宿登记</span>
 								</a>
 							</li>
-							
-							<!-- <li>
-								<a id="groupId" onclick="group()">
-									<i class="icon-double-angle-right"></i>
-									<span>团队住宿登记 </span>
-								</a>
-							</li> -->
+											
 
 						</ul>
 					</li>
@@ -483,7 +476,7 @@
 			
 			
 			
-			
+			//营业金额页面 
 			function dateView(){
 			     var a=document.getElementById("dateViewId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -492,10 +485,7 @@
 			     document.getElementById('Mainid').src='${ctx}/DateView/tolist.do';
 			}
 			
-			function passengerManage(){
-			    
-			}
-			
+			//旅客信息页面 
 			function passengerInformation(){
 			     var a=document.getElementById("passengerManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -503,6 +493,8 @@
 			     document.getElementById("smallGuide").innerHTML=s+"";
 			     document.getElementById('Mainid').src='${ctx}/Passenger/tolist.do';
 			}
+			
+			//接待对象页面 
 			function receiveTarget(){
 			     var a=document.getElementById("passengerManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -511,9 +503,7 @@
 			     document.getElementById('Mainid').src='${ctx}/ReceiveTarget/tolist.do';
 			}
 			
-			function roomManage(){
-			    
-			}
+			//客房设置页面
 			function roomSet(){
 			     var a=document.getElementById("roomManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -521,6 +511,8 @@
 			     document.getElementById("smallGuide").innerHTML=s+"";
 			     document.getElementById('Mainid').src='${ctx}/RoomSet/tolist.do';
 			}
+			
+			//商品设置页面
 			function commoditySet(){
 			     var a=document.getElementById("roomManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -529,10 +521,7 @@
 			     document.getElementById('Mainid').src='${ctx}/Commodity/tolist.do';
 			}
 			
-			
-			function stayManage(){
-			    
-			}
+			//客房预订页面
 			function reservations(){
 			     var a=document.getElementById("stayManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -540,6 +529,8 @@
 			     document.getElementById("smallGuide").innerHTML=s+"";
 			     document.getElementById('Mainid').src='${ctx}/Predetermine/tolist.do';
 			}
+			
+			//住宿登记页面
 			function personage(){
 			     var a=document.getElementById("stayManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";
@@ -547,17 +538,8 @@
 			     document.getElementById("smallGuide").innerHTML=s+"";
 			     document.getElementById('Mainid').src='${ctx}/StayRegister/tolist.do';
 			}
-			function group(){
-			     var a=document.getElementById("stayManageId").getElementsByTagName('span')[0].innerHTML;
-			     document.getElementById("bigGuide").innerHTML=a+"";
-			     var s=document.getElementById("groupId").getElementsByTagName('span')[0].innerHTML;
-			     document.getElementById("smallGuide").innerHTML=s+"";
-			}
 			
-			
-			function financeManage(){
-			    
-			}
+			//财务统计页面 
 			function financeStatistics(){
 			     var a=document.getElementById("financeManageId").getElementsByTagName('span')[0].innerHTML;
 			     document.getElementById("bigGuide").innerHTML=a+"";

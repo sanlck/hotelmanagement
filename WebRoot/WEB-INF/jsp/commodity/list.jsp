@@ -75,12 +75,11 @@
   <body>
   <div class="container" >
     <div class="span4">
-	    <div class="row-fluid">
-		    <label class="labelroomnumber" style="font-size:16px;">商品名：</label>
+	    <div class="row-fluid">		  
 		    <form action="" method="post" style="float: left;">
-			   <input id="txtnameid" name="txtname" class="textone roomnumberwidth" style="border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:27px;" type="text" placeholder="请输入关键字" value="${txtname}">
+			   <input id="txtnameid" name="txtname" class="textone roomnumberwidth" style="border-radius:0px; border-top-left-radius:4px; border-bottom-left-radius:4px;height:27px;" type="text" placeholder="请输入商品名" value="${txtname}">
 			   <div class="input-append">  
-			      <button type="button" onclick="selectFunction()" class="btn btn-success  btn-small textone" style="margin-left:-5px;height:27px;"><li class="icon-search icon-white"></li>搜索</button>
+			      <button type="button" onclick="selectFunction()" class="btn btn-success  btn-small textone" style="margin-left:-5px;height:27px;">搜索</button>
 			   </div>
 		    </form>
 	    </div>
@@ -97,14 +96,11 @@
 		  </select>
 		  <button id="" class="textone"  data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 300, height: 600}"><li class="icon-plus"></li></button>
        </div>
-       <div class="span2">
+       <div class="span3">
          <button class="btn btn-info btn-small textone" type="button" onclick="addfunction()"><li class="icon-plus icon-white"></li>新增</button>
        </div>
-       <div class="span2">
-         <button class="btn btn-warning btn-small textone" type="button" onclick="updatefunction()"><li class="icon-pencil icon-white"></li>修改</button>
-       </div>
-       <div class="span2">
-         <button class="btn btn-danger btn-small textone" type="button" onclick="deletefunction()"><li class="icon-remove icon-white"></li>删除</button>
+       <div class="span3">
+         <button class="btn btn-danger btn-small textone" type="button" onclick="deletesfunction()"><li class="icon-remove icon-white"></li>批量删除</button>
        </div>
        
       </div>
@@ -119,15 +115,20 @@
 	          <th rowspan="2">商品类别</th>
 	          <th rowspan="2">计量单位</th>
 	          <th rowspan="2">销售价格</th>
+	          <th rowspan="2">操作</th>
 	      </thead>
 	      <tbody id="tbody">
 	        <c:forEach items="${list.result}" var="item">
 		        <tr>
-		          <td><input type="checkbox" name="id" value="${item.id}"></td>
+		          <td style="width:50px;"><input type="checkbox" name="id" value="${item.id}"></td>
 		          <td>${item.commodityName}</td>
 		          <td>${item.commodityTypeName}</td>
 		          <td>${item.uOMName}</td>
 		          <td>${item.salePrice}</td>
+		          <td style="width:110px;">
+		          	<button class="btn btn-warning btn-small" type="button" onclick="updatefunction(${item.id})">修改</button>
+		          	<button class="btn btn-danger btn-small" type="button" onclick="deletefunction(${item.id})">删除</button>
+		          </td> 
 		        </tr>
 	        </c:forEach>
 	      </tbody>
@@ -195,42 +196,61 @@
      parent.document.getElementById('Mainid').src='${ctx}/Commodity/toadd.do';
    }
    
+   //修改按钮
    function updatefunction(){
-   var chk_value=[];
-  	$('input[name="id"]:checked').each(function(){
-  		chk_value.push($(this).val());
-  	});
-  	if(chk_value!=""){
-		if(chk_value.toString().indexOf(",")>0){
-		   alert("修改只能选择一条");
+	   var chk_value=[];
+	  	$('input[name="id"]:checked').each(function(){
+	  		chk_value.push($(this).val());
+	  	});
+	  	if(chk_value!=""){
+			if(chk_value.toString().indexOf(",")>0){
+			   alert("修改只能选择一条");
+			}else{
+			   parent.document.getElementById("Mainid").src='${ctx}/Commodity/toupdate.do?id='+chk_value;
+			}
 		}else{
-		   parent.document.getElementById("Mainid").src='${ctx}/Commodity/toupdate.do?id='+chk_value;
+		  alert("请选择一条数据进行修改");
 		}
-	}else{
-	  alert("请选择一条数据进行修改");
-	}
   }
-  
+   //删除按钮
    function deletefunction(){
-   var chk_value=[];
-  	$('input[name="id"]:checked').each(function(){
-  		chk_value.push($(this).val());
-  	});
-  	if(chk_value!=""){
-  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
-     if(flag){
-  	  parent.document.getElementById("Mainid").src='${ctx}/Commodity/delete.do?id='+chk_value;
-  	}
-  	}else{
-	  alert("请选择一条或多条数据进行删除");
-	}
+	   var chk_value=[];
+	  	$('input[name="id"]:checked').each(function(){
+	  		chk_value.push($(this).val());
+	  	});
+	  	if(chk_value!=""){
+		  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
+		     if(flag){
+		  	  parent.document.getElementById("Mainid").src='${ctx}/Commodity/delete.do?id='+chk_value;
+	  	}
+	  	}else{
+		  	alert("请选择一条或多条数据进行删除");
+		}
+	
+  }
+   
+   //批量删除按钮 
+   function deletesfunction(){
+	   var chk_value=[];
+	  	$('input[name="id"]:checked').each(function(){
+	  		chk_value.push($(this).val());
+	  	});
+	  	if(chk_value!=""){
+		  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
+		     if(flag){
+		  	  parent.document.getElementById("Mainid").src='${ctx}/Commodity/delete.do?id='+chk_value;
+	  	}
+	  	}else{
+		  	alert("请选择一条或多条数据进行删除");
+		}
 	
   }
   
   
-  
+   //商品类别下拉框 
    function selectChange(){
      var commodityTypeID=document.getElementById("selectCboId").value;
+
      parent.document.getElementById('Mainid').src='${ctx}/Commodity/tolist.do?commodityTypeID='+commodityTypeID;
    }
   
@@ -240,9 +260,9 @@
      pageCount:${list.totalPage},
      current:${list.currentPage},
      backFn:function(p){
-     var txtname=document.getElementById("txtnameid").value;
-     var commodityTypeID=document.getElementById("selectCboId").value;
-     location.href="${ctx}/Commodity/tolist.do?currentPage="+p+"&txtname="+txtname+"&commodityTypeID="+commodityTypeID;
+	     var txtname=document.getElementById("txtnameid").value;
+	     var commodityTypeID=document.getElementById("selectCboId").value;
+	     location.href="${ctx}/Commodity/tolist.do?currentPage="+p+"&txtname="+txtname+"&commodityTypeID="+commodityTypeID;
      }
    });
    
@@ -259,20 +279,21 @@
    }
    
    function newdeletefunction(){
-   var chk_value=[];
-  	$('input[name="newid"]:checked').each(function(){
-  		chk_value.push($(this).val());
-  	});
-  	if(chk_value!=""){
-  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
-     if(flag){
-  	  parent.document.getElementById("Mainid").src='${ctx}/Commodity/newdelete.do?id='+chk_value;
-  	}
-  	}else{
-	  alert("请选择一条或多条数据进行删除");
-	}
+	   var chk_value=[];
+	  	$('input[name="newid"]:checked').each(function(){
+	  		chk_value.push($(this).val());
+	  	});
+	  	if(chk_value!=""){
+	  	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
+	     if(flag){
+	  	  parent.document.getElementById("Mainid").src='${ctx}/Commodity/newdelete.do?id='+chk_value;
+	  	}
+	  	}else{
+		  alert("请选择一条或多条数据进行删除");
+		}
 	
   }
+  
   
  </script>
    

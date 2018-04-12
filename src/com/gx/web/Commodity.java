@@ -43,7 +43,7 @@ public class Commodity {
 			mv=new ModelAndView("/commodity/list");
 			Page<CommodityPo> vo=new Page<CommodityPo>();
 			if (commodityTypeID==null) {
-				commodityTypeID=16;
+				commodityTypeID=72;
 			}
 			if (currentPage==null) {
 				currentPage=1;
@@ -55,7 +55,12 @@ public class Commodity {
 				txtname="";
 			}
 			vo.setCurrentPage(currentPage);
-			vo=this.commodityService.pageFuzzyselect(txtname,commodityTypeID, vo);
+			if(commodityTypeID==72) {
+				vo=this.commodityService.pageFuzzysselect(txtname,vo);
+			}else {
+				vo=this.commodityService.pageFuzzyselect(txtname,commodityTypeID, vo);
+			}
+			
 			mv.addObject("list",vo);
 			mv.addObject("txtname",txtname);
 			mv.addObject("listOne",listOne);

@@ -29,4 +29,7 @@ public interface CommodityService {
 
 		//ajax 验证是否存在 此商品
 	    public int selectYZ(String commodityName);
+
+
+		public Page<CommodityPo> pageFuzzysselect(String txtname, Page<CommodityPo> vo);
 }

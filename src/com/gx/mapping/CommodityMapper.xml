@@ -60,8 +60,24 @@
     and commodityTypeID=#{commodityTypeID,jdbcType=INTEGER}
     limit #{start},#{pageSize}
   </select>
+  <!-- 全部 -->
+    <select id="pageFuzzysselect" resultType="com.gx.po.CommodityPo">
+      select c.*,a.attributeDetailsName as commodityTypeName,b.attributeDetailsName as uOMName 
+    from commodity c INNER JOIN attributedetails a on c.commodityTypeID=a.id 
+    INNER JOIN attributedetails b on c.uOMID =b.id   
+    WHERE commodityName like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+    ORDER BY commodityTypeName DESC
+    limit #{start},#{pageSize}
+  </select>
   
-  
+     <!-- 全部条数 -->
+  <select id="countFuzzysselect" resultType="java.lang.Integer">
+      select count(*) from commodity c INNER JOIN attributedetails a on c.commodityTypeID=a.id 
+    INNER JOIN attributedetails b on c.uOMID =b.id   
+    WHERE commodityName like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%') 
+  </select>
+    
+   <!-- 分页模糊查询总条数 -->
   <select id="countFuzzyselect" resultType="java.lang.Integer">
       select count(*) from commodity c INNER JOIN attributedetails a on c.commodityTypeID=a.id 
     INNER JOIN attributedetails b on c.uOMID =b.id   
